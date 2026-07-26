@@ -120,6 +120,37 @@
     };
   }
 
+  // Restores from a file produced by exportAll(). Replaces rather than merges:
+  // merging two histories would double-count any overlapping days, and there's
+  // no way to tell an overlap from genuine additional usage.
+  async function importAll(parsed) {
+    if (!parsed || typeof parsed !== 'object') throw new Error('Not a valid backup file.');
+    if (!parsed.rollups || typeof parsed.rollups !== 'object') {
+      throw new Error('This file has no rollups — is it an AICM export?');
+    }
+
+    // Validate shape before writing, so a malformed file can't corrupt a good store.
+    let days = 0;
+    let events = 0;
+    for (const [day, buckets] of Object.entries(parsed.rollups)) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) throw new Error(`Unexpected date key: ${day}`);
+      if (!buckets || typeof buckets !== 'object') throw new Error(`Bad data for ${day}`);
+      for (const bucket of Object.values(buckets)) {
+        if (typeof bucket.aiu !== 'number' || typeof bucket.count !== 'number') {
+          throw new Error(`Bad bucket for ${day}`);
+        }
+        events += bucket.count;
+      }
+      days += 1;
+    }
+
+    await writeRollups(prune({ ...parsed.rollups }));
+    await chrome.storage.local.set({
+      [META_KEY]: { schemaVersion: SCHEMA_VERSION, lastWriteAt: Date.now() },
+    });
+    return { days, events };
+  }
+
   async function estimateUsage() {
     // getBytesInUse isn't available in every context; fall back to a rough
     // JSON length so the UI can still show something meaningful.
@@ -137,6 +168,7 @@
     readRollups,
     clearAll,
     exportAll,
+    importAll,
     estimateUsage,
     dayKey,
     bucketKey,

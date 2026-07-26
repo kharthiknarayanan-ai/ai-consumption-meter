@@ -28,6 +28,30 @@
   </header>
 
   <main>
+    <section class="welcome" id="welcomePanel" hidden>
+      <button class="welcome-dismiss" id="dismissWelcome" aria-label="Dismiss">&times;</button>
+      <h2>Your AI meter is running</h2>
+      <p>
+        An electricity meter shows you power you'd never otherwise notice using.
+        This does the same for AI &mdash; it counts how much AI-generated content
+        you take in, so an invisible habit becomes something you can actually look at.
+      </p>
+      <div class="welcome-grid">
+        <div>
+          <h3>What it watches</h3>
+          <p>ChatGPT, Claude, and Gemini conversations, plus Google's AI Overviews. Only the <em>length</em> of what AI produces is measured &mdash; never the text itself.</p>
+        </div>
+        <div>
+          <h3>Where your data goes</h3>
+          <p>Nowhere. It's stored in your browser and never transmitted. There's no server, no account, and no analytics &mdash; the extension makes no network requests at all.</p>
+        </div>
+        <div>
+          <h3>What to do now</h3>
+          <p>Nothing. Just use AI as you normally would and come back in a few days. A profile needs about a week of history before it means much.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="reading-panel">
       <div class="reading">
         <span id="totalAiu">0.0</span>
@@ -35,6 +59,20 @@
       </div>
       <div class="reading-sub" id="eventCount">0 events logged</div>
       <div class="reading-stats" id="quickStats"></div>
+    </section>
+
+    <section class="empty-hint" id="emptyHint" hidden>
+      <p>
+        <strong>Nothing recorded yet.</strong> Open
+        <a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a>,
+        <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a>, or
+        <a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a>
+        and send a message &mdash; it'll appear here about a second after the reply finishes.
+      </p>
+      <p class="empty-hint-sub">
+        Already used one of them? If a site was open before you installed this,
+        refresh that tab so the meter can attach to it.
+      </p>
     </section>
 
     <section class="panel persona-panel" id="personaPanel">
@@ -104,18 +142,61 @@
       </p>
       <div class="data-actions">
         <button id="exportData" class="secondary-btn">Download my data (JSON)</button>
+        <button id="importData" class="secondary-btn">Restore from file</button>
         <button id="clearData" class="danger-btn">Delete all my data</button>
+        <input type="file" id="importFile" accept="application/json" hidden />
       </div>
+      <div class="data-status" id="dataStatus"></div>
     </section>
 
-    <p class="footnote">
-      aiU is a rough, directional unit &mdash; roughly 500 characters of AI output
-      per unit, weighted by category. Click a legend item on either chart to
-      toggle it on or off. Man-day figures assume ~3,000 characters/hour of
-      researched writing and an 8-hour day; they model what the same volume of
-      text <em>might</em> have cost to produce, not measured time saved. It's all
-      meant to make an invisible pattern visible, not to be a precise measurement.
-    </p>
+    <details class="explainer">
+      <summary>How this works, and what it can't tell you</summary>
+
+      <h3>The unit (aiU)</h3>
+      <p>
+        Roughly 500 characters of AI output is 1 aiU, multiplied by a category
+        weight. Like a kilowatt-hour, it's a convenient stand-in rather than
+        something meaningful in itself &mdash; useful for comparing one week
+        against another, not as an absolute quantity.
+      </p>
+
+      <h3>The categories</h3>
+      <ul class="explainer-list">
+        <li><strong>Direct query</strong> (&times;1) &mdash; you asked, and used the answer.</li>
+        <li><strong>Delegated creation</strong> (&times;1.2) &mdash; longer replies more likely to be content you reuse. Currently inferred from length alone, not from what you actually did with it.</li>
+        <li><strong>Ambient</strong> (&times;0.3) &mdash; you never asked; it appeared anyway, like a search AI Overview. Weighted lowest because you didn't direct it.</li>
+      </ul>
+
+      <h3>The profile</h3>
+      <p>
+        Scored on <em>how</em> you use AI, not how much. Sending more messages
+        does not raise it. It combines tool breadth (25%), the share of use that
+        was deliberate rather than passive (45%), and consistency across days
+        (30%). Someone whose intake is mostly ambient search summaries scores
+        <em>lower</em> than someone making fewer, more deliberate queries.
+        Below 5 active days or 25 events it's capped and marked provisional,
+        because consistency is meaninglessly perfect when you've only just started.
+      </p>
+
+      <h3>Man-days</h3>
+      <p>
+        Assumes ~3,000 characters/hour for researched writing and an 8-hour day.
+        "0.9 man-days" means <em>this volume of text would have taken about
+        0.9 days to write from scratch</em> &mdash; not that you saved 0.9 days,
+        since that assumes you'd have written all of it yourself, at that length,
+        unaided. The efficiency multiplier is just the ratio of reading speed to
+        writing speed: a fact about reading, not about you.
+      </p>
+
+      <h3>What this can't tell you</h3>
+      <p>
+        Whether any of it was correct, whether you used it, whether you
+        understood or checked it, or whether you could have done the work
+        yourself. It measures consumption, and consumption isn't competence.
+        It's a mirror for your own habits &mdash; not evidence about anyone,
+        including you.
+      </p>
+    </details>
   </main>
 
   <script src="dashboard.js"></script>

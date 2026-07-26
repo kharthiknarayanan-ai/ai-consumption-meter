@@ -13,6 +13,9 @@ aicm-data-*.json
 *.zip
 dist/
 
+# Working files in store-assets (previews, scratch) — real assets don't start with _
+store-assets/_*
+
 # OS / editor noise
 .DS_Store
 Thumbs.db

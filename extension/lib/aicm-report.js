@@ -12,7 +12,13 @@
 // dedup — that second layer is what will stop double-counting across devices
 // once sync exists, since the platforms all sync conversation history.
 
-const AICM = (() => {
+// Assigned explicitly onto the global rather than declared with `const`.
+// Content scripts listed together in the manifest share one global lexical
+// scope, so `const` does work — but relying on that is an implicit contract
+// between files. An explicit global property is unambiguous, and behaves the
+// same whether this is loaded as a content script or via a <script> tag in
+// the popup.
+globalThis.AICM = (() => {
   const SEEN_KEY = 'aicm_seen_fingerprints';
   const DEVICE_KEY = 'aicm_device_id';
   const HEALTH_KEY = 'aicm_health';

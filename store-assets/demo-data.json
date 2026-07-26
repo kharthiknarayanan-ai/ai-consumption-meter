@@ -1,0 +1,712 @@
+{
+  "exportedAt": "2026-07-26T17:19:41.413Z",
+  "schemaVersion": 1,
+  "rollups": {
+    "2026-06-22": {
+      "claude|delegated_creation|chars": {
+        "count": 2,
+        "outputLength": 3934,
+        "activeMs": 0,
+        "aiu": 9.44
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1552,
+        "activeMs": 0,
+        "aiu": 3.1
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 2134,
+        "activeMs": 0,
+        "aiu": 5.12
+      },
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1151,
+        "activeMs": 0,
+        "aiu": 2.3
+      },
+      "google_search|ambient|chars": {
+        "count": 2,
+        "outputLength": 2371,
+        "activeMs": 0,
+        "aiu": 1.42
+      }
+    },
+    "2026-06-23": {
+      "google_search|ambient|chars": {
+        "count": 5,
+        "outputLength": 6961,
+        "activeMs": 0,
+        "aiu": 4.18
+      },
+      "claude|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 2539,
+        "activeMs": 0,
+        "aiu": 6.09
+      },
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 966,
+        "activeMs": 0,
+        "aiu": 1.93
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 2052,
+        "activeMs": 0,
+        "aiu": 4.92
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 1,
+        "outputLength": 631,
+        "activeMs": 0,
+        "aiu": 1.26
+      }
+    },
+    "2026-06-24": {
+      "chatgpt|delegated_creation|chars": {
+        "count": 2,
+        "outputLength": 2552,
+        "activeMs": 0,
+        "aiu": 6.12
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 3,
+        "outputLength": 2094,
+        "activeMs": 0,
+        "aiu": 4.19
+      },
+      "claude|direct_query|chars": {
+        "count": 1,
+        "outputLength": 511,
+        "activeMs": 0,
+        "aiu": 1.02
+      },
+      "google_search|ambient|chars": {
+        "count": 1,
+        "outputLength": 1877,
+        "activeMs": 0,
+        "aiu": 1.13
+      }
+    },
+    "2026-06-25": {
+      "google_search|ambient|chars": {
+        "count": 2,
+        "outputLength": 1600,
+        "activeMs": 0,
+        "aiu": 0.96
+      },
+      "claude|direct_query|chars": {
+        "count": 4,
+        "outputLength": 3644,
+        "activeMs": 0,
+        "aiu": 7.29
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1394,
+        "activeMs": 0,
+        "aiu": 2.79
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 1585,
+        "activeMs": 0,
+        "aiu": 3.8
+      }
+    },
+    "2026-06-26": {
+      "google_search|ambient|chars": {
+        "count": 1,
+        "outputLength": 544,
+        "activeMs": 0,
+        "aiu": 0.33
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 3,
+        "outputLength": 1562,
+        "activeMs": 0,
+        "aiu": 3.13
+      },
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1590,
+        "activeMs": 0,
+        "aiu": 3.18
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 1602,
+        "activeMs": 0,
+        "aiu": 3.84
+      }
+    },
+    "2026-06-28": {
+      "claude|direct_query|chars": {
+        "count": 1,
+        "outputLength": 769,
+        "activeMs": 0,
+        "aiu": 1.54
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 1,
+        "outputLength": 693,
+        "activeMs": 0,
+        "aiu": 1.39
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 1524,
+        "activeMs": 0,
+        "aiu": 3.66
+      }
+    },
+    "2026-06-29": {
+      "chatgpt|direct_query|chars": {
+        "count": 1,
+        "outputLength": 1028,
+        "activeMs": 0,
+        "aiu": 2.06
+      },
+      "claude|direct_query|chars": {
+        "count": 3,
+        "outputLength": 2397,
+        "activeMs": 0,
+        "aiu": 4.79
+      },
+      "google_search|ambient|chars": {
+        "count": 1,
+        "outputLength": 559,
+        "activeMs": 0,
+        "aiu": 0.34
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 1859,
+        "activeMs": 0,
+        "aiu": 4.46
+      },
+      "claude|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 2363,
+        "activeMs": 0,
+        "aiu": 5.67
+      }
+    },
+    "2026-06-30": {
+      "gemini|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1130,
+        "activeMs": 0,
+        "aiu": 2.26
+      },
+      "claude|direct_query|chars": {
+        "count": 3,
+        "outputLength": 1840,
+        "activeMs": 0,
+        "aiu": 3.67
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 1,
+        "outputLength": 1030,
+        "activeMs": 0,
+        "aiu": 2.06
+      }
+    },
+    "2026-07-01": {
+      "claude|direct_query|chars": {
+        "count": 1,
+        "outputLength": 690,
+        "activeMs": 0,
+        "aiu": 1.38
+      },
+      "google_search|ambient|chars": {
+        "count": 2,
+        "outputLength": 1894,
+        "activeMs": 0,
+        "aiu": 1.14
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1511,
+        "activeMs": 0,
+        "aiu": 3.02
+      },
+      "gemini|direct_query|chars": {
+        "count": 1,
+        "outputLength": 614,
+        "activeMs": 0,
+        "aiu": 1.23
+      }
+    },
+    "2026-07-02": {
+      "google_search|ambient|chars": {
+        "count": 6,
+        "outputLength": 6467,
+        "activeMs": 0,
+        "aiu": 3.87
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 1,
+        "outputLength": 838,
+        "activeMs": 0,
+        "aiu": 1.68
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 2,
+        "outputLength": 4559,
+        "activeMs": 0,
+        "aiu": 10.95
+      },
+      "claude|direct_query|chars": {
+        "count": 1,
+        "outputLength": 831,
+        "activeMs": 0,
+        "aiu": 1.66
+      },
+      "claude|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 1568,
+        "activeMs": 0,
+        "aiu": 3.76
+      }
+    },
+    "2026-07-03": {
+      "claude|direct_query|chars": {
+        "count": 1,
+        "outputLength": 994,
+        "activeMs": 0,
+        "aiu": 1.99
+      },
+      "gemini|direct_query|chars": {
+        "count": 1,
+        "outputLength": 654,
+        "activeMs": 0,
+        "aiu": 1.31
+      },
+      "google_search|ambient|chars": {
+        "count": 4,
+        "outputLength": 5987,
+        "activeMs": 0,
+        "aiu": 3.59
+      }
+    },
+    "2026-07-05": {
+      "chatgpt|direct_query|chars": {
+        "count": 1,
+        "outputLength": 893,
+        "activeMs": 0,
+        "aiu": 1.79
+      },
+      "google_search|ambient|chars": {
+        "count": 2,
+        "outputLength": 1791,
+        "activeMs": 0,
+        "aiu": 1.07
+      }
+    },
+    "2026-07-06": {
+      "chatgpt|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 2650,
+        "activeMs": 0,
+        "aiu": 6.36
+      },
+      "google_search|ambient|chars": {
+        "count": 3,
+        "outputLength": 3069,
+        "activeMs": 0,
+        "aiu": 1.84
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 1,
+        "outputLength": 767,
+        "activeMs": 0,
+        "aiu": 1.53
+      }
+    },
+    "2026-07-07": {
+      "chatgpt|delegated_creation|chars": {
+        "count": 2,
+        "outputLength": 2512,
+        "activeMs": 0,
+        "aiu": 6.03
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 1,
+        "outputLength": 819,
+        "activeMs": 0,
+        "aiu": 1.64
+      },
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1746,
+        "activeMs": 0,
+        "aiu": 3.49
+      },
+      "google_search|ambient|chars": {
+        "count": 2,
+        "outputLength": 3086,
+        "activeMs": 0,
+        "aiu": 1.85
+      },
+      "gemini|direct_query|chars": {
+        "count": 1,
+        "outputLength": 799,
+        "activeMs": 0,
+        "aiu": 1.6
+      }
+    },
+    "2026-07-08": {
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1706,
+        "activeMs": 0,
+        "aiu": 3.42
+      },
+      "google_search|ambient|chars": {
+        "count": 4,
+        "outputLength": 5526,
+        "activeMs": 0,
+        "aiu": 3.31
+      },
+      "gemini|direct_query|chars": {
+        "count": 1,
+        "outputLength": 529,
+        "activeMs": 0,
+        "aiu": 1.06
+      }
+    },
+    "2026-07-09": {
+      "google_search|ambient|chars": {
+        "count": 2,
+        "outputLength": 2630,
+        "activeMs": 0,
+        "aiu": 1.58
+      },
+      "gemini|direct_query|chars": {
+        "count": 1,
+        "outputLength": 623,
+        "activeMs": 0,
+        "aiu": 1.25
+      },
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 2077,
+        "activeMs": 0,
+        "aiu": 4.15
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1380,
+        "activeMs": 0,
+        "aiu": 2.76
+      },
+      "claude|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 2297,
+        "activeMs": 0,
+        "aiu": 5.51
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 1736,
+        "activeMs": 0,
+        "aiu": 4.17
+      }
+    },
+    "2026-07-10": {
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1252,
+        "activeMs": 0,
+        "aiu": 2.5
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 1,
+        "outputLength": 905,
+        "activeMs": 0,
+        "aiu": 1.81
+      },
+      "google_search|ambient|chars": {
+        "count": 1,
+        "outputLength": 907,
+        "activeMs": 0,
+        "aiu": 0.54
+      }
+    },
+    "2026-07-12": {
+      "google_search|ambient|chars": {
+        "count": 3,
+        "outputLength": 3848,
+        "activeMs": 0,
+        "aiu": 2.31
+      },
+      "claude|direct_query|chars": {
+        "count": 1,
+        "outputLength": 903,
+        "activeMs": 0,
+        "aiu": 1.81
+      }
+    },
+    "2026-07-13": {
+      "google_search|ambient|chars": {
+        "count": 2,
+        "outputLength": 2900,
+        "activeMs": 0,
+        "aiu": 1.74
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1318,
+        "activeMs": 0,
+        "aiu": 2.64
+      },
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1475,
+        "activeMs": 0,
+        "aiu": 2.95
+      }
+    },
+    "2026-07-14": {
+      "google_search|ambient|chars": {
+        "count": 4,
+        "outputLength": 4177,
+        "activeMs": 0,
+        "aiu": 2.51
+      },
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1755,
+        "activeMs": 0,
+        "aiu": 3.51
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1174,
+        "activeMs": 0,
+        "aiu": 2.34
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 1064,
+        "activeMs": 0,
+        "aiu": 2.55
+      },
+      "gemini|direct_query|chars": {
+        "count": 1,
+        "outputLength": 627,
+        "activeMs": 0,
+        "aiu": 1.25
+      }
+    },
+    "2026-07-15": {
+      "gemini|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1515,
+        "activeMs": 0,
+        "aiu": 3.03
+      },
+      "claude|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 2177,
+        "activeMs": 0,
+        "aiu": 5.22
+      },
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1576,
+        "activeMs": 0,
+        "aiu": 3.15
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 3,
+        "outputLength": 2141,
+        "activeMs": 0,
+        "aiu": 4.28
+      },
+      "google_search|ambient|chars": {
+        "count": 3,
+        "outputLength": 4229,
+        "activeMs": 0,
+        "aiu": 2.53
+      }
+    },
+    "2026-07-16": {
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1860,
+        "activeMs": 0,
+        "aiu": 3.72
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1448,
+        "activeMs": 0,
+        "aiu": 2.89
+      },
+      "google_search|ambient|chars": {
+        "count": 5,
+        "outputLength": 5528,
+        "activeMs": 0,
+        "aiu": 3.31
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 1,
+        "outputLength": 2835,
+        "activeMs": 0,
+        "aiu": 6.8
+      }
+    },
+    "2026-07-17": {
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1308,
+        "activeMs": 0,
+        "aiu": 2.62
+      },
+      "google_search|ambient|chars": {
+        "count": 4,
+        "outputLength": 5613,
+        "activeMs": 0,
+        "aiu": 3.37
+      }
+    },
+    "2026-07-20": {
+      "claude|direct_query|chars": {
+        "count": 3,
+        "outputLength": 2789,
+        "activeMs": 0,
+        "aiu": 5.58
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1986,
+        "activeMs": 0,
+        "aiu": 3.97
+      },
+      "google_search|ambient|chars": {
+        "count": 4,
+        "outputLength": 5431,
+        "activeMs": 0,
+        "aiu": 3.26
+      },
+      "chatgpt|delegated_creation|chars": {
+        "count": 2,
+        "outputLength": 3503,
+        "activeMs": 0,
+        "aiu": 8.4
+      }
+    },
+    "2026-07-21": {
+      "claude|delegated_creation|chars": {
+        "count": 2,
+        "outputLength": 5518,
+        "activeMs": 0,
+        "aiu": 13.24
+      },
+      "gemini|direct_query|chars": {
+        "count": 1,
+        "outputLength": 567,
+        "activeMs": 0,
+        "aiu": 1.13
+      },
+      "google_search|ambient|chars": {
+        "count": 3,
+        "outputLength": 3255,
+        "activeMs": 0,
+        "aiu": 1.95
+      },
+      "claude|direct_query|chars": {
+        "count": 1,
+        "outputLength": 1131,
+        "activeMs": 0,
+        "aiu": 2.26
+      }
+    },
+    "2026-07-22": {
+      "claude|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1778,
+        "activeMs": 0,
+        "aiu": 3.55
+      },
+      "chatgpt|direct_query|chars": {
+        "count": 2,
+        "outputLength": 1318,
+        "activeMs": 0,
+        "aiu": 2.64
+      },
+      "gemini|direct_query|chars": {
+        "count": 1,
+        "outputLength": 512,
+        "activeMs": 0,
+        "aiu": 1.02
+      }
+    },
+    "2026-07-23": {
+      "chatgpt|direct_query|chars": {
+        "count": 7,
+        "outputLength": 5368,
+        "activeMs": 0,
+        "aiu": 10.73
+      },
+      "claude|direct_query|chars": {
+        "count": 1,
+        "outputLength": 1026,
+        "activeMs": 0,
+        "aiu": 2.05
+      },
+      "google_search|ambient|chars": {
+        "count": 2,
+        "outputLength": 2546,
+        "activeMs": 0,
+        "aiu": 1.52
+      }
+    },
+    "2026-07-25": {
+      "google_search|ambient|chars": {
+        "count": 2,
+        "outputLength": 3328,
+        "activeMs": 0,
+        "aiu": 2
+      },
+      "gemini|direct_query|chars": {
+        "count": 1,
+        "outputLength": 726,
+        "activeMs": 0,
+        "aiu": 1.45
+      }
+    },
+    "2026-07-26": {
+      "gemini|direct_query|chars": {
+        "count": 1,
+        "outputLength": 820,
+        "activeMs": 0,
+        "aiu": 1.64
+      },
+      "claude|direct_query|chars": {
+        "count": 1,
+        "outputLength": 661,
+        "activeMs": 0,
+        "aiu": 1.32
+      },
+      "google_search|ambient|chars": {
+        "count": 1,
+        "outputLength": 1046,
+        "activeMs": 0,
+        "aiu": 0.63
+      }
+    }
+  },
+  "meta": {
+    "schemaVersion": 1,
+    "lastWriteAt": 1785086381413
+  },
+  "deviceId": "demo-device",
+  "health": {}
+}

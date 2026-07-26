@@ -2,9 +2,15 @@
 // /api/stats used to return. Keeping the shape identical means the dashboard
 // rendering code didn't have to change when storage moved into the extension.
 (function (root, factory) {
-  const mod = factory(
-    typeof require === 'function' ? require('./aicm-insights.js') : root.AICM_INSIGHTS
-  );
+  // Prefer an already-loaded global over require(): in the extension the libs
+  // are loaded as plain <script> tags, and reaching for require() first would
+  // break in any context where both happen to be available.
+  const dep =
+    (root && root.AICM_INSIGHTS) ||
+    (typeof require === 'function' ? require('./aicm-insights.js') : null);
+  if (!dep) throw new Error('aicm-stats: aicm-insights must be loaded first');
+
+  const mod = factory(dep);
   if (typeof module === 'object' && module.exports) module.exports = mod;
   else root.AICM_STATS = mod;
 })(typeof self !== 'undefined' ? self : this, function (insights) {

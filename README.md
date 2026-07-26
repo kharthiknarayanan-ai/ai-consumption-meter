@@ -2,7 +2,9 @@
 
 Like an electricity meter, but for how much AI-generated intelligence you consume day to day. A Chrome extension watches your ChatGPT, Claude, and Gemini web sessions, plus Google Search, logs each AI interaction as a "consumption event," and a local dashboard with real charts shows the running total in **aiU** (a rough, directional unit — not a precise measurement).
 
-v2 scope covers all four consumption categories from the concept doc, at a basic level: `direct_query` (asking ChatGPT/Claude/Gemini something and using the answer as-is), `delegated_creation` (the same three platforms, but for long AI-generated replies you're more likely to actually use/publish — currently a length-based heuristic, not real intent detection), `ambient` (Google AI Overview — a synthesized answer you didn't explicitly ask for), and `decision` (Google search-box autocomplete suggestions you picked instead of typing your own query). See the concept doc for the full long-term vision.
+Three of the four consumption categories from the concept doc are implemented: `direct_query` (asking ChatGPT/Claude/Gemini something and using the answer as-is), `delegated_creation` (the same three platforms, but for long AI-generated replies you're more likely to actually use — currently a length-based heuristic, not real intent detection), and `ambient` (Google AI Overview — a synthesized answer you didn't explicitly ask for).
+
+The fourth, `decision`, exists in the data model but **nothing currently produces it**. The original implementation targeted an ARIA combobox pattern Google's search box turns out not to use, so it could never fire; it was removed rather than shipped as a category that stays permanently empty. See the concept doc for the full long-term vision.
 
 ## What's in here
 
@@ -34,7 +36,7 @@ The dashboard opens automatically on first install.
 
 Have a normal conversation on `chatgpt.com`, `claude.ai`, or `gemini.google.com`. About 1.5 seconds after each AI reply finishes, the extension records it — the count ticks up in the popup, and the full breakdown is in the dashboard.
 
-Search something on `google.com` that triggers an AI Overview (question-style searches work best) and that's recorded too, as `ambient` rather than `direct_query` — you didn't ask for it, it just showed up. Pick an autocomplete suggestion instead of finishing your own query and that records as `decision`.
+Search something on `google.com` that triggers an AI Overview (question-style searches work best) and that's recorded too, as `ambient` rather than `direct_query` — you didn't ask for it, it just showed up.
 
 The dashboard shows your AI usage profile (persona + sophistication score with a generated avatar), human-equivalent effort in man-days, doughnut charts for platform and category breakdown, a 14-day trend with optional 7-day average, and controls to export or delete everything.
 
@@ -58,7 +60,7 @@ Every logged AI reply gets weighted into **aiU**:
 aiU = max(0.1, (characters in the reply / 500) × category multiplier)
 ```
 
-Category multipliers: `direct_query` = 1, `delegated_creation` = 1.2, `decision` = 0.5, `ambient` = 0.3.
+Category multipliers: `direct_query` = 1, `delegated_creation` = 1.2, `ambient` = 0.3. (`decision` = 0.5 exists in the model but nothing produces it — see above.)
 
 `delegated_creation` is currently decided by a simple length heuristic: any ChatGPT/Claude/Gemini reply of 800+ characters is logged as `delegated_creation` instead of `direct_query`, on the assumption that a long reply is more likely to be drafted content you'll actually reuse than a quick answer. It's not based on what you actually did with the reply (copy, publish, ignore) — that would need copy/export-action detection, which isn't built yet.
 
@@ -79,7 +81,7 @@ So "0.95 man-days" means *the volume of text you consumed would have taken about
 The dashboard assigns a persona — Passive Recipient, Casual User, Practitioner, Power User, Orchestrator — from a 0–100 **sophistication score**. Deliberately **not** volume-based. The score combines:
 
 - **Tool breadth** (25%) — using several tools suggests picking per task rather than defaulting to whatever's open.
-- **Deliberate use** (45%) — the share of consumption actively requested (`direct_query`, `delegated_creation`) versus passively received (`ambient`, `decision`). A high ambient share pushes this **down**.
+- **Deliberate use** (45%) — the share of consumption actively requested (`direct_query`, `delegated_creation`) versus passively received (`ambient`). A high ambient share pushes this **down**.
 - **Consistency** (30%) — using AI across many distinct days, with full marks at roughly half the days in the window (daily use isn't inherently better than every-other-day use).
 
 Sending more messages does not raise your score. A heavy user whose consumption is almost all passive search summaries scores *lower* than a light user making deliberate, multi-tool queries — which matches this project's founding premise that unnoticed AI consumption is the thing worth watching.
@@ -104,17 +106,17 @@ The two-day requirement exists to avoid false alarms — opening a chat site a f
 
 ## Known limitations (read before reporting a "bug")
 
-The DOM selectors this relies on (`chatgpt.js`, `claude.js`, `gemini.js`, `google-search.js`) are tied to each site's current markup. If OpenAI, Anthropic, or Google change their UI, detection stops working — the popup should warn you (see above), and the fix is to update the selector constant in the relevant content script. `google-search.js`'s AI Overview detection is the most fragile of the bunch — its selector is a minified/obfuscated Google class name (`.iNqyIf`) rather than a semantic `data-testid` or custom element tag, so it's the most likely one to break first. The autocomplete-suggestion (`decision`) detection in the same file is **unverified** — it targets the standard ARIA `role="option"`/`role="listbox"` pattern, which has a decent shot at being right since it's a semantic accessibility hook rather than an obfuscated class, but it hasn't been confirmed against live Google markup the way everything else in this project has. If `decision` events never show up, that's the first place to check.
+The DOM selectors this relies on (`chatgpt.js`, `claude.js`, `gemini.js`, `google-search.js`) are tied to each site's current markup. If OpenAI, Anthropic, or Google change their UI, detection stops working — the popup should warn you (see above), and the fix is to update the selector constant in the relevant content script. `google-search.js` is the most fragile of the four: its selector is a minified, obfuscated Google class name (`.iNqyIf`) rather than a semantic `data-testid` or custom element tag, so it's the most likely to break first.
 
-Ambient sources beyond Google AI Overview (autocomplete elsewhere, recommendation feeds) and `decision` sources beyond Google's search suggestions (e.g. Gmail Smart Reply) aren't implemented — see the concept doc for that roadmap. `delegated_creation` is a length heuristic, not real usage detection (see above).
+Nothing currently produces the `decision` category. `delegated_creation` is inferred from reply length, not from what you actually did with the reply.
 
-There's no "self-authored vs. AI-assisted" ratio yet, since that requires knowing how much you wrote yourself, which this version doesn't measure.
+There's no "self-authored vs. AI-assisted" ratio, since that would require measuring how much you wrote yourself.
 
-Storage is a flat JSON file, not a real database — fine for personal use at this scale, but it will get slow if it grows into the tens of thousands of events. Swap in SQLite or Postgres if that happens.
+Only this browser, on this device, is measured. It's a sample of your AI use, not a complete record.
 
 ## Roadmap (not built yet)
 
-Real `delegated_creation` detection (copy/export/download-action tracking on ChatGPT, Claude, and Gemini, replacing the current length heuristic). More `decision` sources beyond Google's search suggestions (e.g. Gmail Smart Reply clicks, recommendation-row clicks). More ambient sources beyond Google AI Overview. Copilot and Perplexity support. A "cognitive independence" ratio. Multi-device sync (would require the backend to move off a local JSON file and onto a real database with auth).
+A working `decision` source (the Google autocomplete attempt was removed — see above; Gmail Smart Reply is a more promising target). Real `delegated_creation` detection via copy/export actions, replacing the length heuristic. More ambient sources. Firefox and Safari ports. Copilot and Perplexity. A "cognitive independence" ratio. Cross-device sync — see `docs/ecosystem-architecture.md`.
 
 ## Publishing to GitHub
 

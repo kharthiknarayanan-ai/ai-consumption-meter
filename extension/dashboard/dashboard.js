@@ -343,6 +343,7 @@ async function refresh() {
     }
     document.getElementById('eventCount').textContent = countText;
 
+    await renderWelcome(stats);
     renderQuickStats(stats);
     renderPersona(stats);
     renderEffort(stats);
@@ -372,6 +373,31 @@ document.getElementById('showAverage').addEventListener('change', (e) => {
   refresh();
 });
 
+// --- Onboarding / empty state ----------------------------------------------
+
+const WELCOME_DISMISSED_KEY = 'aicm_welcome_dismissed';
+
+async function renderWelcome(stats) {
+  const params = new URLSearchParams(window.location.search);
+  const stored = await chrome.storage.local.get([WELCOME_DISMISSED_KEY]);
+  const dismissed = stored[WELCOME_DISMISSED_KEY] === true;
+
+  // Show on the post-install visit, and keep showing until there's real data
+  // or the user dismisses it — someone who installs, closes the tab, and comes
+  // back later should still get the explanation.
+  const show = !dismissed && (params.get('welcome') === '1' || stats.eventCount === 0);
+  document.getElementById('welcomePanel').hidden = !show;
+
+  // Separate from the welcome panel: this is actionable guidance, shown
+  // whenever the current view has nothing in it.
+  document.getElementById('emptyHint').hidden = stats.eventCount !== 0;
+}
+
+document.getElementById('dismissWelcome').addEventListener('click', async () => {
+  document.getElementById('welcomePanel').hidden = true;
+  await chrome.storage.local.set({ [WELCOME_DISMISSED_KEY]: true });
+});
+
 // --- Data controls ---------------------------------------------------------
 
 async function renderStorageUsage() {
@@ -394,6 +420,36 @@ document.getElementById('exportData').addEventListener('click', async () => {
   a.download = `aicm-data-${new Date().toISOString().slice(0, 10)}.json`;
   a.click();
   URL.revokeObjectURL(url);
+});
+
+function setDataStatus(msg, isError) {
+  const el = document.getElementById('dataStatus');
+  el.textContent = msg;
+  el.className = 'data-status' + (isError ? ' error' : '');
+}
+
+document.getElementById('importData').addEventListener('click', () => {
+  document.getElementById('importFile').click();
+});
+
+document.getElementById('importFile').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const parsed = JSON.parse(await file.text());
+    const ok = window.confirm(
+      'Restoring will replace your current recorded history with the contents of this file.\n\nContinue?'
+    );
+    if (!ok) return;
+    const { days, events } = await AICM_STORE.importAll(parsed);
+    setDataStatus(`Restored ${events} events across ${days} day${days === 1 ? '' : 's'}.`);
+    await refresh();
+    await renderStorageUsage();
+  } catch (err) {
+    setDataStatus(`Could not restore: ${err.message}`, true);
+  } finally {
+    e.target.value = ''; // allow re-selecting the same file
+  }
 });
 
 document.getElementById('clearData').addEventListener('click', async () => {

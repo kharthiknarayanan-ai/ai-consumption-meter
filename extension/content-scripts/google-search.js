@@ -1,9 +1,6 @@
-// Two independent watchers on google.com:
-//   1. AI Overview detection (ambient) — only on /search pages.
-//   2. Autocomplete-suggestion-pick detection (decision) — any page with the
-//      search box, since suggestions can appear on the homepage too.
-
-// --- 1. AI Overview → 'ambient' -------------------------------------------
+// Detects Google's AI Overview — the generated summary above search results —
+// and records it as 'ambient' consumption: AI you didn't ask for that was put
+// in front of you anyway.
 //
 // Confirmed via manual DevTools inspection (2026-07-25): each paragraph/bullet
 // of the generated answer is wrapped in a <span class="iNqyIf">. We sum the
@@ -96,44 +93,14 @@
   checkOverviewPresence();
 })();
 
-// --- 2. Autocomplete suggestion picked → 'decision' ------------------------
+// REMOVED (2026-07-26): autocomplete-suggestion tracking for the 'decision'
+// category. It targeted the standard ARIA combobox pattern
+// ([role="listbox"] / [role="option"]), which Google's search box does not
+// use — verified live: zero matching elements with the suggestions dropdown
+// open. The code could never have fired.
 //
-// PLACEHOLDER: unverified. Targets the standard ARIA combobox pattern
-// ([role="listbox"] containing [role="option"] items), which is a semantic
-// accessibility hook rather than an obfuscated class name, so it has a
-// decent shot at working as-is — but Google's search box has been rebuilt
-// under different frameworks before, so treat this as unconfirmed until
-// tested. To verify/fix: start typing a query until the suggestions dropdown
-// appears, right-click one suggestion → Inspect, and check whether it (or an
-// ancestor) actually has role="option" / role="listbox". If not, update
-// OPTION_SELECTOR / LISTBOX_SELECTOR below to match what's really there.
-(function watchAutocompleteDecisions() {
-  const OPTION_SELECTOR = '[role="option"]';
-  const LISTBOX_SELECTOR = '[role="listbox"]';
-  const CATEGORY = 'decision';
-
-  function logSuggestionPick(text) {
-    AICM.report({ platform: 'google_search', text, category: CATEGORY, surface: 'web' });
-  }
-
-  document.addEventListener(
-    'click',
-    (e) => {
-      const option = e.target.closest && e.target.closest(OPTION_SELECTOR);
-      if (option) logSuggestionPick(option.textContent);
-    },
-    true
-  );
-
-  document.addEventListener(
-    'keydown',
-    (e) => {
-      if (e.key !== 'Enter') return;
-      const listbox = document.querySelector(LISTBOX_SELECTOR);
-      if (!listbox) return;
-      const highlighted = listbox.querySelector('[role="option"][aria-selected="true"]');
-      if (highlighted) logSuggestionPick(highlighted.textContent);
-    },
-    true
-  );
-})();
+// The 'decision' category still exists in the data model (see lib/aicm-aiu.js)
+// as designed-but-unimplemented, but nothing currently produces it, so it is
+// no longer described anywhere user-facing. Implementing it properly needs a
+// real selector for whatever markup Google actually uses, or a different
+// decision source entirely (e.g. Gmail Smart Reply).
