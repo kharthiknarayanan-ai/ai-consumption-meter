@@ -134,7 +134,7 @@ git branch -M main
 gh repo create ai-consumption-meter --public --source=. --push
 
 # Or create an empty repo on github.com first, then:
-git remote add origin https://github.com/kharthiknarayanan/ai-consumption-meter.git
+git remote add origin https://github.com/kharthiknarayanan-ai/ai-consumption-meter.git
 git push -u origin main
 ```
 

@@ -25,7 +25,7 @@ Side benefit worth noting: an extension that makes **zero network calls** is the
 Storage note: `chrome.storage.local` defaults to ~10MB, which is ample for daily rollups but not for unbounded raw events. Store daily rollups plus a capped recent-event window, and prune on write.
 
 ### 2. Create the GitHub repo
-The popup's "Report this" link already points at `github.com/kharthiknarayanan/ai-consumption-meter/issues/new`. **That URL currently 404s.** Shipping with a broken support link is worse than having no link. Needs the repo public, a LICENSE (MIT is the conventional pick), and an issue template.
+**Done.** Repo is live at `github.com/kharthiknarayanan-ai/ai-consumption-meter` with MIT LICENSE, issue templates, and CONTRIBUTING. The popup's "Report this" link now resolves. (Worth noting how this nearly shipped broken: the URL was guessed from an email address and the real username turned out to be `kharthiknarayanan-ai` — the link 404'd until it was checked against the actual remote.)
 
 ### 3. Resolve the unverified `decision` detection
 Google autocomplete tracking was written against an assumed ARIA pattern and has never been confirmed to fire. Either verify it works and keep it, or remove it before launch. Shipping a feature that silently does nothing is the kind of thing that produces confused reviews you can't debug.

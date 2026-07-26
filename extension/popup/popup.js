@@ -17,7 +17,7 @@ function renderToday() {
 // home — the extension notices its own breakage and tells the person, rather
 // than telling us. The "Report this" link opens a prefilled GitHub issue the
 // user can read and choose to submit.
-const REPO_ISSUE_URL = 'https://github.com/kharthiknarayanan/ai-consumption-meter/issues/new';
+const REPO_ISSUE_URL = 'https://github.com/kharthiknarayanan-ai/ai-consumption-meter/issues/new';
 
 const PLATFORM_LABELS = {
   chatgpt: 'ChatGPT',
