@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Intelligence Consumption Meter</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <!-- Everything is bundled with the extension. This page makes no network
+       requests of any kind — no CDN, no server, no analytics. -->
+  <script src="../vendor/chart.umd.js"></script>
+  <script src="../lib/aicm-aiu.js"></script>
+  <script src="../lib/aicm-insights.js"></script>
+  <script src="../lib/aicm-stats.js"></script>
+  <script src="../lib/aicm-store.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <h1>AI Intelligence Consumption Meter</h1>
+    </div>
+    <div class="range-picker" id="rangePicker">
+      <button data-range="today">Today</button>
+      <button data-range="week" class="active">Week</button>
+      <button data-range="month">Month</button>
+      <button data-range="all">All time</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="reading-panel">
+      <div class="reading">
+        <span id="totalAiu">0.0</span>
+        <span class="unit">aiU</span>
+      </div>
+      <div class="reading-sub" id="eventCount">0 events logged</div>
+      <div class="reading-stats" id="quickStats"></div>
+    </section>
+
+    <section class="panel persona-panel" id="personaPanel">
+      <div class="persona-card" id="personaCard">
+        <div class="persona-avatar" id="personaAvatar"></div>
+        <div class="persona-body">
+          <div class="persona-label">AI usage profile</div>
+          <h3 class="persona-name" id="personaName">&mdash;</h3>
+          <p class="persona-blurb" id="personaBlurb"></p>
+          <div class="persona-bars" id="personaBars"></div>
+        </div>
+        <div class="persona-score">
+          <div class="persona-score-value" id="personaScore">&mdash;</div>
+          <div class="persona-score-label">sophistication</div>
+        </div>
+      </div>
+      <p class="persona-caveat">
+        Measures <em>how</em> you use AI (breadth of tools, deliberate vs. passive
+        consumption, consistency) &mdash; not how much, and not how well. Volume
+        alone doesn't raise this score. It can't tell whether output was correct,
+        used, or understood, and it isn't a substitute for asking someone about
+        their work.
+      </p>
+    </section>
+
+    <section class="grid effort-grid">
+      <div class="panel stat-panel">
+        <h2>Human-equivalent effort</h2>
+        <div class="stat-value"><span id="manDays">0</span><span class="stat-unit">man-days</span></div>
+        <div class="stat-sub" id="manHours">0 hours of equivalent research &amp; drafting</div>
+      </div>
+      <div class="panel stat-panel">
+        <h2>Time not spent producing</h2>
+        <div class="stat-value"><span id="savedDays">0</span><span class="stat-unit">man-days</span></div>
+        <div class="stat-sub" id="savedDetail">reading is ~5&times; faster than writing from scratch</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>By platform</h2>
+        <div class="chart-wrap"><canvas id="platformChart"></canvas></div>
+      </div>
+      <div class="panel">
+        <h2>By category</h2>
+        <div class="chart-wrap"><canvas id="categoryChart"></canvas></div>
+      </div>
+    </section>
+
+    <section class="panel trend-panel">
+      <div class="trend-header">
+        <h2>Last 14 days</h2>
+        <label class="trend-toggle">
+          <input type="checkbox" id="showAverage" checked />
+          7-day average
+        </label>
+      </div>
+      <div class="chart-wrap trend-wrap"><canvas id="trendChart"></canvas></div>
+    </section>
+
+    <section class="panel data-panel">
+      <h2>Your data</h2>
+      <p class="data-blurb">
+        Everything this extension records stays in your browser. It is never sent
+        anywhere &mdash; there is no server, no account, and no analytics.
+        <span id="storageUsage"></span>
+      </p>
+      <div class="data-actions">
+        <button id="exportData" class="secondary-btn">Download my data (JSON)</button>
+        <button id="clearData" class="danger-btn">Delete all my data</button>
+      </div>
+    </section>
+
+    <p class="footnote">
+      aiU is a rough, directional unit &mdash; roughly 500 characters of AI output
+      per unit, weighted by category. Click a legend item on either chart to
+      toggle it on or off. Man-day figures assume ~3,000 characters/hour of
+      researched writing and an 8-hour day; they model what the same volume of
+      text <em>might</em> have cost to produce, not measured time saved. It's all
+      meant to make an invisible pattern visible, not to be a precise measurement.
+    </p>
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

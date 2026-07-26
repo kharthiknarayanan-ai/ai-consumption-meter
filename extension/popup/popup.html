@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>AICM</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <span class="dot"></span>
+      <h1>AI Consumption</h1>
+    </div>
+
+    <div class="reading">
+      <span id="todayValue">0.0</span>
+      <span class="unit">aiU today</span>
+    </div>
+
+    <div class="subtext" id="todayCount">0 events logged</div>
+
+    <div class="health" id="healthWarning" hidden>
+      <div class="health-title">Detection may be broken</div>
+      <div class="health-body" id="healthDetail"></div>
+      <a class="health-link" id="reportLink" href="#" target="_blank" rel="noopener">Report this &rarr;</a>
+    </div>
+
+    <button id="openDashboard">Open full dashboard</button>
+
+    <div class="status ok">Stored locally &mdash; never sent anywhere</div>
+  </div>
+
+  <script src="../lib/aicm-report.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

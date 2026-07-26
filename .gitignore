@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Personal usage data — never commit this. It's a record of your own AI
+# consumption, and it's exactly the kind of thing that gets pushed by accident.
+backend/data/events.json
+backend/data/*.db
+backend/data/*.sqlite
+backend/data/*.corrupt-*
+aicm-data-*.json
+
+# Build/packaging output
+*.zip
+dist/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Logs and secrets
+*.log
+.env
+.env.*
